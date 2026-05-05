@@ -1,4 +1,12 @@
 export default function RenderGrid(props){
+
+    function paint(row, col) {
+        const next = props.grid.map(r => r.slice())
+
+        next[row][col] = props.currentColor;
+        props.setGrid(next)
+    }
+
     return (
         <div className="pixel-art">
             <h1>Pixel Art Editor</h1>
@@ -18,6 +26,7 @@ export default function RenderGrid(props){
                     className="pixel"
                     // Use the cell's stored color as the button's background
                     style={{ background: color }}
+                    onClick={() => paint(r,c)}
                     aria-label={`Pixel ${r}, ${c}`}
                 />
                 ))

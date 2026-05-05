@@ -24,6 +24,8 @@ function App() {
             <RenderGrid 
                 GRID_SIZE={GRID_SIZE}
                 grid={grid}
+                currentColor={currentColor}
+                setGrid={setGrid}
             />
         </div>
     )
