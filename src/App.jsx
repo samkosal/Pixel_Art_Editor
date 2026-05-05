@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.css'
+import RenderGrid from './RenderGrid';
 
 const GRID_SIZE = 16;
 const DEFAULT_COLOR = '#ffffff';
@@ -18,7 +19,14 @@ function App() {
 
     const [currentColor, setCurrentColor] = useState('#1a1a1a')
     
-    return <div></div>
+    return (
+        <div>
+            <RenderGrid 
+                GRID_SIZE={GRID_SIZE}
+                grid={grid}
+            />
+        </div>
+    )
 }
 
 export default App
