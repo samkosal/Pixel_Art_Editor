@@ -1,17 +1,16 @@
 import { useState } from 'react';
 import './App.css'
 import RenderGrid from './RenderGrid';
+import colors from './data.js';
 
 const GRID_SIZE = 16;
 const DEFAULT_COLOR = '#ffffff';
 
 function makeEmptyGrid() {
-    return Array.from(
-        { length: GRID_SIZE },
-        () => Array.from({ length: GRID_SIZE },
-        () => Array(GRID_SIZE).fill(DEFAULT_COLOR)
-        )
-    )
+  return Array.from(
+    { length: GRID_SIZE },                        // outer length: 16 rows
+    () => Array(GRID_SIZE).fill(DEFAULT_COLOR)    // each row: 16 cells of white
+  )
 }
 
 function App() {
@@ -21,6 +20,24 @@ function App() {
     
     return (
         <div>
+            <div className="pixel-presets">
+                {colors.map((color,index) => (
+                    <button
+                        key={index}
+                        style={{ background: color }}
+                        // Add a 'selected' class when this swatch matches the current color
+                        className={'preset' + (color === currentColor ? ' selected' : '')}
+                        onClick={() => setCurrentColor(color)}
+                    >
+                        YOO
+                    </button>
+                ))}
+            </div>
+            <button
+                onClick={() => setGrid(makeEmptyGrid())}
+            > Clear</button>
+
+
             <label className="pixel-tools">
             Color
                 <input
@@ -36,6 +53,7 @@ function App() {
                 grid={grid}
                 currentColor={currentColor}
                 setGrid={setGrid}
+                
             />
         </div>
     )
