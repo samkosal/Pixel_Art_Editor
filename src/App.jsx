@@ -21,6 +21,16 @@ function App() {
     
     return (
         <div>
+            <label className="pixel-tools">
+            Color
+                <input
+                    type="color"
+                    // Value comes from state, not from the input's own internal storage
+                    value={currentColor}
+                    // On every change, push the new hex color back into state
+                    onChange={e => setCurrentColor(e.target.value)}
+                />
+            </label>
             <RenderGrid 
                 GRID_SIZE={GRID_SIZE}
                 grid={grid}
