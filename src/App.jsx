@@ -44,7 +44,6 @@ function App() {
                             setSelectedPreset(color)
                         }}
                     >
-                        YOO
                     </button>
                 ))}
             </div>
