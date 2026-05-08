@@ -1,4 +1,19 @@
 /* App.css */
+.app-shell {
+  min-height: 100vh;
+  background: #ffffff;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.app-content {
+  width: min(100%, 960px);
+}
+
+.pixel-art {
+  width: min(92vw, 640px);
+}
+
 .pixel-grid {
   display: grid;
   gap: 1px;                  /* thin gap creates visible cell borders */
@@ -7,6 +22,7 @@
   border-radius: 8px;
   overflow: hidden;
   aspect-ratio: 1;           /* keeps the grid square no matter the width */
+  width: 100%;
   max-width: 640px;
 }
 
@@ -40,6 +56,7 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 6px;
+  margin-bottom: 30px;
 }
 
 .preset {

@@ -17,17 +17,32 @@ function App() {
     const [grid, setGrid] = useState(makeEmptyGrid)
 
     const [currentColor, setCurrentColor] = useState('#1a1a1a')
+    const [selectedPreset, setSelectedPreset] = useState(null)
+
+    function resetColorSelection() {
+        setCurrentColor(DEFAULT_COLOR)
+        setSelectedPreset(null)
+    }
     
     return (
-        <div>
+        <div className="app-shell" onClick={resetColorSelection}>
+            <div className="app-content" onClick={e => e.stopPropagation()}>
             <div className="pixel-presets">
                 {colors.map((color,index) => (
                     <button
                         key={index}
                         style={{ background: color }}
                         // Add a 'selected' class when this swatch matches the current color
-                        className={'preset' + (color === currentColor ? ' selected' : '')}
-                        onClick={() => setCurrentColor(color)}
+                        className={'preset' + (color === selectedPreset ? ' selected' : '')}
+                        onClick={() => {
+                            if (selectedPreset === color) {
+                                resetColorSelection()
+                                return
+                            }
+
+                            setCurrentColor(color)
+                            setSelectedPreset(color)
+                        }}
                     >
                         YOO
                     </button>
@@ -45,7 +60,10 @@ function App() {
                     // Value comes from state, not from the input's own internal storage
                     value={currentColor}
                     // On every change, push the new hex color back into state
-                    onChange={e => setCurrentColor(e.target.value)}
+                    onChange={e => {
+                        setCurrentColor(e.target.value)
+                        setSelectedPreset(null)
+                    }}
                 />
             </label>
             <RenderGrid 
@@ -55,6 +73,7 @@ function App() {
                 setGrid={setGrid}
                 
             />
+            </div>
         </div>
     )
 }
